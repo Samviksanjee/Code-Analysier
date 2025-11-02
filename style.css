@@ -1,0 +1,243 @@
+/* Custom styles for Code Analyser */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.step-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.features-section .card {
+    height: 100%;
+}
+
+.features-section .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Chat styles */
+#chat-messages {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.user-message {
+    background-color: #007bff !important;
+    border-radius: 18px 18px 4px 18px;
+}
+
+.bot-message {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6;
+    border-radius: 18px 18px 18px 4px;
+}
+
+.message {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Code display */
+pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+code {
+    color: #e83e8c;
+    background-color: transparent;
+}
+
+/* Analysis content */
+.analysis-content {
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.analysis-content h1,
+.analysis-content h2,
+.analysis-content h3,
+.analysis-content h4,
+.analysis-content h5,
+.analysis-content h6 {
+    color: #495057;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.analysis-content ul,
+.analysis-content ol {
+    padding-left: 1.5rem;
+}
+
+.analysis-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Metric cards */
+.metric-card {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease-in-out;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.input-group-text {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+/* Alert styles */
+.alert {
+    border: none;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Loading animation */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Table styles */
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* Badge styles */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+}
+
+/* List group styles */
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}

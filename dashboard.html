@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Code Analyser{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+    <a href="{{ url_for('upload_code') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Upload New Code
+    </a>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">{{ code_files|length }}</h4>
+                        <p class="card-text">Total Files</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-file-code fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">{{ code_files|selectattr('5')|list|length }}</h4>
+                        <p class="card-text">Analyzed</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-check-circle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">{{ code_files|groupby('4')|list|length }}</h4>
+                        <p class="card-text">Languages</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-code fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">Active</h4>
+                        <p class="card-text">Status</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-user fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="fas fa-folder-open"></i> Your Code Files</h5>
+    </div>
+    <div class="card-body">
+        {% if code_files %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Language</th>
+                        <th>Uploaded</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in code_files %}
+                    <tr>
+                        <td>
+                            <i class="fas fa-file-code text-primary"></i>
+                            {{ file[2] }}
+                        </td>
+                        <td>
+                            <span class="badge bg-secondary">{{ file[4] or 'Unknown' }}</span>
+                        </td>
+                        <td>{{ file[6] }}</td>
+                        <td>
+                            {% if file[5] %}
+                            <span class="badge bg-success">Analyzed</span>
+                            {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{{ url_for('analyze_code', file_id=file[0]) }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <button class="btn btn-sm btn-outline-danger" onclick="deleteFile({{ file[0] }})">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted">No code files uploaded yet</h5>
+            <p class="text-muted">Upload your first code file to get started with analysis</p>
+            <a href="{{ url_for('upload_code') }}" class="btn btn-primary">
+                <i class="fas fa-upload"></i> Upload Code
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function deleteFile(fileId) {
+    if (confirm('Are you sure you want to delete this file?')) {
+        // Create a form to submit POST request
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/delete/${fileId}`;
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+</script>
+{% endblock %}

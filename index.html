@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Code Analyser - Home{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-primary mb-4">
+            <i class="fas fa-code"></i> Code Analyser
+        </h1>
+        <p class="lead mb-4">
+            Analyze your code with AI-powered insights, upload and manage your code files, 
+            and chat with our intelligent code assistant.
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    {% if not session.user_id %}
+                    <a href="{{ url_for('signup') }}" class="btn btn-primary btn-lg me-md-2">
+                        <i class="fas fa-user-plus"></i> Get Started
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg me-md-2">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                    <a href="{{ url_for('upload_code') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-upload"></i> Upload Code
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Features</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-upload fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Code Upload & Analysis</h5>
+                        <p class="card-text">
+                            Upload your code files and get instant AI-powered analysis including 
+                            quality assessment, bug detection, and optimization suggestions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-comments fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">AI Chat Assistant</h5>
+                        <p class="card-text">
+                            Chat with our intelligent code assistant powered by Google Gemini. 
+                            Get help with your code using RAG (Retrieval-Augmented Generation).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-database fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Code Management</h5>
+                        <p class="card-text">
+                            Store and manage all your code files in a secure database. 
+                            Access your code history and analysis results anytime.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="how-it-works-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">How It Works</h2>
+        <div class="row">
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">1</span>
+                </div>
+                <h5>Sign Up</h5>
+                <p>Create your account to get started with Code Analyser.</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">2</span>
+                </div>
+                <h5>Upload Code</h5>
+                <p>Upload your code files and get instant AI analysis.</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">3</span>
+                </div>
+                <h5>Chat & Learn</h5>
+                <p>Ask questions about your code using our AI chat assistant.</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">4</span>
+                </div>
+                <h5>Improve</h5>
+                <p>Use the insights to improve your code quality and skills.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

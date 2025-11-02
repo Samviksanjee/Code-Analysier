@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Code - Code Analyser{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-upload"></i> Upload Code for Analysis</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="filename" class="form-label">Filename</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-file"></i></span>
+                            <input type="text" class="form-control" id="filename" name="filename" 
+                                   placeholder="e.g., main.py, app.js, index.html" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="language" class="form-label">Programming Language</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-code"></i></span>
+                            <select class="form-select" id="language" name="language">
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="java">Java</option>
+                                <option value="cpp">C++</option>
+                                <option value="c">C</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                                <option value="sql">SQL</option>
+                                <option value="php">PHP</option>
+                                <option value="ruby">Ruby</option>
+                                <option value="go">Go</option>
+                                <option value="rust">Rust</option>
+                                <option value="swift">Swift</option>
+                                <option value="kotlin">Kotlin</option>
+                                <option value="typescript">TypeScript</option>
+                                <option value="unknown">Other/Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="code_content" class="form-label">Code Content</label>
+                        <textarea class="form-control" id="code_content" name="code_content" 
+                                  rows="15" placeholder="Paste your code here..." required></textarea>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> 
+                            Your code will be analyzed using Google Gemini AI for quality assessment, 
+                            bug detection, and optimization suggestions.
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload"></i> Upload & Analyze
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-lightbulb"></i> Analysis Features</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-check-circle text-success"></i> Code Quality Assessment</h6>
+                        <p class="text-muted small">Evaluate code structure, readability, and best practices</p>
+                        
+                        <h6><i class="fas fa-bug text-danger"></i> Bug Detection</h6>
+                        <p class="text-muted small">Identify potential bugs and logical errors</p>
+                        
+                        <h6><i class="fas fa-rocket text-primary"></i> Performance Optimization</h6>
+                        <p class="text-muted small">Suggestions for improving code performance</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-shield-alt text-info"></i> Security Analysis</h6>
+                        <p class="text-muted small">Security vulnerabilities and best practices</p>
+                        
+                        <h6><i class="fas fa-star text-warning"></i> Best Practices</h6>
+                        <p class="text-muted small">Recommendations following industry standards</p>
+                        
+                        <h6><i class="fas fa-comments text-secondary"></i> Detailed Comments</h6>
+                        <p class="text-muted small">Comprehensive analysis with explanations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Auto-detect language based on filename
+document.getElementById('filename').addEventListener('input', function() {
+    const filename = this.value.toLowerCase();
+    const languageSelect = document.getElementById('language');
+    
+    const extensions = {
+        '.py': 'python',
+        '.js': 'javascript',
+        '.java': 'java',
+        '.cpp': 'cpp',
+        '.c': 'c',
+        '.html': 'html',
+        '.htm': 'html',
+        '.css': 'css',
+        '.sql': 'sql',
+        '.php': 'php',
+        '.rb': 'ruby',
+        '.go': 'go',
+        '.rs': 'rust',
+        '.swift': 'swift',
+        '.kt': 'kotlin',
+        '.ts': 'typescript'
+    };
+    
+    for (const [ext, lang] of Object.entries(extensions)) {
+        if (filename.endsWith(ext)) {
+            languageSelect.value = lang;
+            break;
+        }
+    }
+});
+</script>
+{% endblock %}
